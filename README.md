@@ -10,7 +10,7 @@ This project is a **React + TypeScript dashboard** that allows browsing, filteri
 
 ### Dashboard Page
 
-- **User List/Grid**: Displays all users with name, email, and avatar.
+- **User List**: Displays all users with name, email, and avatar.
 - **Infinite Scrolling & Virtualization**: Efficient rendering for large datasets using virtualized lists.
 - **Filters**: Three filters implemented:
     - Country (input)
@@ -26,12 +26,12 @@ This project is a **React + TypeScript dashboard** that allows browsing, filteri
     - Address
     - Additional metadata
     - Order history
-- Navigation back to the dashboard/list view.
+- Navigation back to the customer list view.
 
 ### Orders
 
 - **Order History**: Displays order number, date, and total amount for each order.
-- **Orders List/Table**: Orders are rendered in a scrollable list format.
+- **Orders List**: Orders are rendered in a scrollable list format.
 - **Lazy Loading**: Orders are lazy-loaded for performance optimization.
 
 ### Additional Features
