@@ -2,8 +2,11 @@ import { Customer } from "./Customer.tsx";
 import useInfiniteScroll from "../../../hooks/useInfiniteScroll.ts";
 import { AutoSizer, InfiniteLoader, List } from "react-virtualized";
 import type { Customer as CustomerType } from "../../../types/customer.ts";
+import { useNavigate } from "react-router";
 
 export const CustomerList = ({ customers }: { customers: CustomerType[] }) => {
+    const navigate = useNavigate();
+
     const { itemsToDisplay, isRowLoaded, loadMoreRows, totalItems } =
         useInfiniteScroll(customers, 20);
 
@@ -25,6 +28,7 @@ export const CustomerList = ({ customers }: { customers: CustomerType[] }) => {
                 firstName={customer.firstName}
                 lastName={customer.lastName}
                 email={customer.email}
+                onClick={() => navigate(`/customer/${index}`)}
             />
         );
     };
