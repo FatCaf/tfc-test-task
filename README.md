@@ -1,69 +1,79 @@
-# React + TypeScript + Vite
+# User Dashboard Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a **React + TypeScript dashboard** that allows browsing, filtering, and viewing details of users. It includes infinite scrolling, virtualization, sorting, filtering, and a detailed user page with order history.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Dashboard Page
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **User List/Grid**: Displays all users with name, email, and avatar.
+- **Infinite Scrolling & Virtualization**: Efficient rendering for large datasets using virtualized lists.
+- **Filters**: Three filters implemented:
+    - Country (input)
+    - Gender (select)
+    - City (input)
+    - State (input)
+- **Dynamic Filtering**: Filters update the user list in real-time.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### User Details Page
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Displays all information about the selected user, including:
+    - Contact details
+    - Address
+    - Additional metadata
+    - Order history
+- Navigation back to the dashboard/list view.
+
+### Orders
+
+- **Order History**: Displays order number, date, and total amount for each order.
+- **Orders List/Table**: Orders are rendered in a scrollable list format.
+- **Lazy Loading**: Orders are lazy-loaded for performance optimization.
+
+### Additional Features
+
+- Sorting for user orders (ascending/descending).
+- URL query + localStorage state persistence for sorting and filters.
+- Responsive design for desktop, tablet, and mobile.
+- Custom hooks for filtering (`useFilter`) and sorting (`useSort`).
+
+---
+
+## Additional Technologies Used
+
+- **Tailwind CSS**: Used for utility-first styling to speed up development and maintain a consistent design.
+- **react-virtualized**: Enables virtualization for large lists, ensuring smooth scrolling and high performance with big datasets.
+- **Vitest**: Lightweight and fast testing library used for unit tests on custom hooks (`useSort`, `useFilter`, `useInfiniteScroll`) and critical functionality.
+
+Each of these technologies was chosen to **improve development speed, maintainability, and performance**:
+
+- Tailwind allows rapid styling without writing custom CSS for every component.
+- react-virtualized efficiently renders only visible list items, reducing DOM node count and improving UI responsiveness.
+- Vitest provides a modern, fast testing environment with good TypeScript support, enabling reliable unit tests.
+
+---
+## How to Run
+
+### 1. Live Demo
+
+You can view the live application here:  
+[https://tfc-tets-task.netlify.app/](https://tfc-tets-task.netlify.app/)
+
+### 2. Install Dependencies
+
+Ensure you have [Node.js](https://nodejs.org/) installed. Then, run:
+
+```bash
+npm install && npm run dev
 ```
+To run tests
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run test
+or
+npm run test:ui
 ```
