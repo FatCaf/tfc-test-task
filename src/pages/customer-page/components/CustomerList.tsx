@@ -28,7 +28,7 @@ export const CustomerList = ({ customers }: { customers: CustomerType[] }) => {
                 firstName={customer.firstName}
                 lastName={customer.lastName}
                 email={customer.email}
-                onClick={() => navigate(`/customer/${index}`)}
+                onClick={() => navigate(`/customer/${customer.id}`)}
             />
         );
     };

@@ -8,10 +8,17 @@ export const filterFn = (
     return (Object.entries(filters) as [keyof FilterOptions, string][]).every(
         ([key, value]) => {
             if (!value) return true;
-            return (customer[key] ?? "")
+
+            const customerValue = (customer[key] ?? "")
                 .toString()
-                .toLowerCase()
-                .includes(value.toLowerCase());
+                .toLowerCase();
+            const filterValue = value.toLowerCase();
+
+            if (key === "gender") {
+                return customerValue === filterValue;
+            }
+
+            return customerValue.includes(filterValue);
         }
     );
 };

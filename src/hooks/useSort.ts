@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -56,6 +56,18 @@ export const useSort = <T extends Record<string, string | number>>(
             return 0;
         });
     }, [data, field, direction]);
+
+    useEffect(() => {
+        if (
+            (!params.get("field") && storedSort?.field) ||
+            (!params.get("direction") && storedSort?.direction)
+        ) {
+            const updated: Record<string, string> = {};
+            if (storedSort?.field) updated.field = storedSort.field as string;
+            if (storedSort?.direction) updated.direction = storedSort.direction;
+            setParams(updated, { replace: true });
+        }
+    }, [params, storedSort, setParams]);
 
     return {
         field,
