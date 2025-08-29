@@ -4,6 +4,7 @@ import useVirtualizedInfiniteScroll from "../hooks/useInfiniteScroll.ts";
 import type { Customer } from "../types/customer.ts";
 
 const mockCustomers: Customer[] = Array.from({ length: 50 }).map((_, i) => ({
+    id: i,
     firstName: `First${i}`,
     lastName: `Last${i}`,
     email: `user${i}@example.com`,
